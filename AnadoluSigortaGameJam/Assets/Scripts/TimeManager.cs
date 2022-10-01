@@ -7,6 +7,8 @@ public class TimeManager : MonoBehaviour
 {
     public float slowdownFactor = 0.05f;
     public float slowdownLenght = 2f;
+    public bool level1, level2, level3, level4;
+    public AudioSource patlamaEffekti;
     public IEnumerator SlowMotion()
     {
 
@@ -26,21 +28,39 @@ public class TimeManager : MonoBehaviour
             Time.timeScale = slowdownFactor;
             Time.fixedDeltaTime = Time.timeScale * .02f;
             time += Time.deltaTime;
+       
             yield return null;
         }
 
         Time.fixedDeltaTime = 0.02f;
         Time.timeScale = 1f;
         //Oyunu tekrar baslat 
-        SceneManager.LoadScene(0, LoadSceneMode.Single);
-
-
+        if (level1)
+        {
+                SceneManager.LoadScene("Level 1");
+        }
+        if (level2)
+        {
+            SceneManager.LoadScene("Level 2");
+        }
+        if (level3)
+        {
+            SceneManager.LoadScene("Level 3");
+        }
+        if (level4)
+        {
+            SceneManager.LoadScene("Level 4");
+        }
 
     }
+
+   
 
     public void slowMotionEffectCall()
     {   
         StartCoroutine(SlowMotion());
+        patlamaEffekti.Play();
+    
     }
 
 }
