@@ -50,6 +50,11 @@ public class CarController : MonoBehaviour
 
             SceneManager.LoadScene(scene.name);
         }
+
+        if(transform.rotation.eulerAngles.z<250 && transform.rotation.eulerAngles.z>100)
+        {
+            isBurning = true; //oyunun tekrar baþlamasý için hale hazýrda bu amaç için olan burning fonksiyonunun devreye soktuk
+        }
     }
 
 
